@@ -2,8 +2,8 @@ name: Update Tesouro Direto Data
 
 on:
   schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight UTC
-  workflow_dispatch:  # Allows manual triggering of the workflow
+    - cron: "0 0 * * *" # Runs daily at midnight UTC
+  workflow_dispatch: # Allows manual triggering of the workflow
 
 jobs:
   update-data:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: "3.x"
 
       - name: Install dependencies
         run: |
@@ -25,7 +25,8 @@ jobs:
           playwright install
 
       - name: Run script
-        run: python script.py
+        run: |
+          xvfb-run -a python script.py
 
       - name: Commit and push changes
         run: |
